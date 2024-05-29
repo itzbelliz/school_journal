@@ -4,28 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dziennik lekcyjny</title>
+  <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
   <header>
-    <img src="images/logo.png" alt="Logo" id="logo">
+    <img src="img/HYS.png" alt="Logo">
     <h1>Dziennik Lekcyjny</h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">Strona Główna</a></li>
-            <li><a href="grades.php">Oceny</a></li>
-        </ul>
-    </nav>
 </header>
 
 <main>
     <section id="home-section">
-        <h2>Witamy w Dzienniku Lekcyjnym</h2>
-        <p>Tutaj możesz sprawdzać swoje oceny i nauczyciele mogą wprowadzać oceny.</p>
+        <h3>Witamy w Dzienniku Lekcyjnym HYS</h3>
     </section>
 
     <section id="login-section">
-        <h2>Logowanie</h2>
         <form action="login.php" method="post">
+          <label for="" class="login">Zaloguj się</label>
             <label for="username">Nazwa użytkownika:</label>
             <input type="text" id="username" name="username" required>
             
@@ -33,16 +27,17 @@
             <input type="password" id="password" name="password" required>
             
             <button type="submit">Zaloguj się</button>
+
         </form>
     </section>
     <section id="register">
-      <h3>Zarejestruj się</h3>
-      <a href="register.php">Zarejestruj się</a>
+       <h6>Nie masz konta? <a href="register.php">Zarejestruj się!</a></h6>
+
   </section>
 </main>
 
  <footer>
-    <p>&copy; 2023 Dziennik Lekcyjny</p>
+    <p>&copy; 2024 Dziennik Lekcyjny HYS</p>
 </footer> 
 </body>
 </html>
