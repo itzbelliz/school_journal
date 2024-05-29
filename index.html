@@ -6,6 +6,43 @@
   <title>Dziennik lekcyjny</title>
 </head>
 <body>
-  
+  <header>
+    <img src="images/logo.png" alt="Logo" id="logo">
+    <h1>Dziennik Lekcyjny</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Strona Główna</a></li>
+            <li><a href="grades.php">Oceny</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="home-section">
+        <h2>Witamy w Dzienniku Lekcyjnym</h2>
+        <p>Tutaj możesz sprawdzać swoje oceny i nauczyciele mogą wprowadzać oceny.</p>
+    </section>
+
+    <section id="login-section">
+        <h2>Logowanie</h2>
+        <form action="login.php" method="post">
+            <label for="username">Nazwa użytkownika:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Hasło:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Zaloguj się</button>
+        </form>
+    </section>
+    <section id="register">
+      <h3>Zarejestruj się</h3>
+      <a href="register.php">Zarejestruj się</a>
+  </section>
+</main>
+
+ <footer>
+    <p>&copy; 2023 Dziennik Lekcyjny</p>
+</footer> 
 </body>
 </html>
