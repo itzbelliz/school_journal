@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dziennik lekcyjny</title>
-  <link rel="stylesheet" href="style/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-  <header>
-    <img src="img/HYS.png" alt="Logo">
-    <h1>Dziennik Lekcyjny</h1>
-</header>
-
-<main>
-    <section id="home-section">
-        <h3>Witamy w Dzienniku Lekcyjnym HYS</h3>
-    </section>
-
-    <section id="login-section">
-        <form action="login.php" method="post">
-          <label for="" class="login">Zaloguj się</label>
-            <label for="username">Nazwa użytkownika:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="password">Hasło:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Zaloguj się</button>
-
-        </form>
-    </section>
-    <section id="register">
-       <h6>Nie masz konta? <a href="register.php">Zarejestruj się!</a></h6>
-
-  </section>
-</main>
-
- <footer>
-    <p>&copy; 2024 Dziennik Lekcyjny HYS</p>
-</footer> 
+    <div class="background">
+        <div class="big-text">HYS</div>
+        <div class="container">
+            <div class="logo">
+                <img src="img/HYS_1.png" alt="HYS Logo">
+            </div>
+            <form class="login-form">
+                <div class="input-group">
+                    <label for="login"><i class="fas fa-user"></i></label>
+                    <input type="text" id="login" placeholder="Podaj swój login">
+                </div>
+                <div class="input-group">
+                    <label for="password"><i class="fas fa-lock"></i></label>
+                    <input type="password" id="password" placeholder="Wprowadź hasło">
+                </div>
+                <div class="input-link-group">
+                  <div class="forgot-password">
+                    <a href="#">Nie pamiętam hasła</a>
+                </div>
+                <div class="register">
+                  <a href="#">Zarejestruj się</a>
+              </div>
+                </div>
+                <button type="submit">Zaloguj</button>
+            </form>
+        </div>
+        <footer>
+          <p>&copy Dziennik Lekcyjny HYS</p>
+         </footer>
+    </div>
+     
 </body>
 </html>
