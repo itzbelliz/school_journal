@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -20,7 +25,11 @@
                 <li><a href="#">Oceny</a></li>
                 <li><a href="#">Nieobecności</a></li>
                 <li><a href="#">Info/Uwagi/Wiadomości</a></li>
-                <li><a href="#">Wyloguj</a></li>
+                <li>
+                <form action="logout.php" method="post">
+                    <button type="submit" name="logout">Wyloguj</button>
+                </form>
+                </li>
             </ul>
         </nav>
         <div class="user-icon">

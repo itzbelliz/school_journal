@@ -3,7 +3,7 @@ session_start();
 include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
+    $username = $_POST['login'];
     $password = $_POST['password'];
 
     $query = $conn->prepare("SELECT * FROM users WHERE username=?");
