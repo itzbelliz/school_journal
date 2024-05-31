@@ -89,13 +89,13 @@ body {
   margin: 20px;
 }
 
-.forgot-password a, .register a {
+.forgot-password a, .register a , a{
   color: #999;
   text-decoration: none;
   font-size: 14px;
 }
 
-.forgot-password a:hover, .register a:hover {
+.forgot-password a:hover, .register a:hover, a:hover {
   color: #000;
 }
 
