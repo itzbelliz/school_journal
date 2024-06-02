@@ -215,19 +215,19 @@ $grades = $gradesResult->fetch_all(MYSQLI_ASSOC);
         </section>
     </main>
     <?php if ($role === 'teacher'): ?>
-    <h3>Add Grade</h3>
-    <form action="add_grade.php" method="post">
+        <h3>Add Grade</h3>
+    <form class="teacher-add-grade-form" action="add_grade.php" method="post">
         <label>Student Name:
-            <input type="text" name="student_name">
+            <input type="text" name="student_name" required>
         </label>
-        <label>Subject name:
-            <input type="text" name="subject_name">
+        <label>Subject Name:
+            <input type="text" name="subject_name" required>
         </label>
         <label>Grade:
-            <input type="number" name="grade">
+            <input type="number" name="grade" required>
         </label>
         <label>Date:
-            <input type="date" name="date">
+            <input type="date" name="date" required>
         </label>
         <label>Description:
             <textarea name="description"></textarea>
@@ -235,9 +235,9 @@ $grades = $gradesResult->fetch_all(MYSQLI_ASSOC);
         <button type="submit">Add</button>
     </form>
     <section id="go-back">
-            <h3>Powrót</h3>
-            <a href="index.html">Wróć na stronę główną</a>
-        </section>
+        <h3>Powrót</h3>
+        <a href="index.html">Wróć na stronę główną</a>
+    </section>
     <?php endif; ?>
 </body>
 

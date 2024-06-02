@@ -122,3 +122,57 @@ table.calendar td {
     height: 25px;
     vertical-align: top;
 }
+
+.teacher-add-grade-form {
+  grid-column: 1 / span 3;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.teacher-add-grade-form h3 {
+  margin-top: 0;
+}
+
+.teacher-add-grade-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+.teacher-add-grade-form input,
+.teacher-add-grade-form textarea,
+.teacher-add-grade-form button {
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.teacher-add-grade-form button {
+  align-self: flex-start;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.teacher-add-grade-form button:hover {
+  background-color: #45a049;
+}
+
+/* Section Styles */
+#go-back {
+  grid-column: 1 / span 3;
+}
+
+#go-back a {
+  text-decoration: none;
+  color: #4CAF50;
+  font-size: 16px;
+}
