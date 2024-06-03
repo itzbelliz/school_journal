@@ -1,12 +1,16 @@
 <?php
 session_start();
 include 'config.php';
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
+
 $user_id = $_SESSION['user_id'];
 $role = $_SESSION['role'];
+
+// Pobieranie danych użytkownika
 $query = $conn->prepare("SELECT fullname FROM users WHERE id=?");
 $query->bind_param('i', $user_id);
 $query->execute();
@@ -14,6 +18,25 @@ $result = $query->get_result();
 $user = $result->fetch_assoc();
 $fullname = $user['fullname'];
 
+// Pobieranie wiadomości
+$messagesQuery = $conn->prepare("SELECT message, date_sent FROM messages WHERE user_id = ?");
+$messagesQuery->bind_param('i', $user_id);
+$messagesQuery->execute();
+$messagesResult = $messagesQuery->get_result();
+$messages = $messagesResult->fetch_all(MYSQLI_ASSOC);
+
+// Pobieranie planu zajęć na tydzień dla zalogowanego użytkownika z dodatkowymi danymi nauczyciela i przedmiotu
+$scheduleQuery = $conn->prepare("
+    SELECT sch.subject_id, subjects.name AS subject, sch.day_of_week, sch.start_time, sch.end_time, teachers.fullname AS teacher 
+    FROM schedule sch
+    JOIN subjects ON sch.subject_id = subjects.id
+    JOIN users teachers ON sch.teacher_id = teachers.id
+    WHERE sch.user_id = ?
+    ORDER BY sch.day_of_week, sch.start_time
+");
+$scheduleQuery->bind_param('i', $user_id);
+
+// Pobieranie ocen
 if ($role === 'teacher') {
     $gradesQuery = $conn->prepare("SELECT g.id, u.fullname AS student_name, s.name AS subject, g.grade, g.date, g.description 
                                    FROM grades g 
@@ -49,6 +72,9 @@ $gradesQuery->execute();
 $gradesResult = $gradesQuery->get_result();
 $grades = $gradesResult->fetch_all(MYSQLI_ASSOC);
 
+$scheduleQuery->execute();
+$scheduleResult = $scheduleQuery->get_result();
+$schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -87,13 +113,13 @@ $grades = $gradesResult->fetch_all(MYSQLI_ASSOC);
         <section class="welcome">
             <i class="fas fa-user-graduate"></i>
             <div>Powitanie</div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quia rem adipisci nostrum ipsam, officia distinctio laudantium molestias sequi aliquam quos consectetur officiis impedit, nemo nesciunt quas illum eveniet veritatis.</p>
+            <p>Hello</p>
         </section>
         <section class="average">
             <i class="fas fa-gauge-high"></i>
             <div>Twoja średnia</div>
             <p class="avgrade">
-            <?php 
+                <?php 
                 if (isset($srednia_ocen)) {
                     echo number_format($srednia_ocen, 2);
                 } else {
@@ -104,12 +130,25 @@ $grades = $gradesResult->fetch_all(MYSQLI_ASSOC);
         </section>
         <section class="schedule">
             <i class="fas fa-clipboard"></i>
-            <div>Plan zajęć na dziś</div>
-            <ol>
-                <li>Matematyka</li>
-                <li>Język Polski</li>
-                <li>Język Angielski</li>
-            </ol>
+            <div>Plan zajęć</div>
+            <table border="1">
+                <tr>
+                    <th>Przedmiot</th>
+                    <th>Dzień tygodnia</th>
+                    <th>Godzina rozpoczęcia</th>
+                    <th>Godzina zakończenia</th>
+                    <th>Nauczyciel</th>
+                </tr>
+                <?php foreach ($schedule as $item) : ?>
+                    <tr>
+                        <td><?= htmlspecialchars($item['subject']) ?></td>
+                        <td><?= htmlspecialchars($item['day_of_week']) ?></td>
+                        <td><?= htmlspecialchars($item['start_time']) ?></td>
+                        <td><?= htmlspecialchars($item['end_time']) ?></td>
+                        <td><?= htmlspecialchars($item['teacher']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
         </section>
         <section class="recent-grades">
             <div>Ostatnie oceny</div>
@@ -139,6 +178,18 @@ $grades = $gradesResult->fetch_all(MYSQLI_ASSOC);
         <section class="messages">
             <i class="fas fa-envelope"></i>
             <div>Wiadomości</div>
+            <table border="1">
+                <tr>
+                    <th>Wiadomość</th>
+                    <th>Data wysłania</th>
+                </tr>
+                <?php foreach ($messages as $message) : ?>
+                    <tr>
+                        <td><?= htmlspecialchars($message['message']) ?></td>
+                        <td><?= htmlspecialchars($message['date_sent']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
         </section>
         <section class="calendar">
             <i class="fas fa-calendar-alt"></i>
@@ -216,28 +267,28 @@ $grades = $gradesResult->fetch_all(MYSQLI_ASSOC);
     </main>
     <?php if ($role === 'teacher'): ?>
         <h3>Add Grade</h3>
-    <form class="teacher-add-grade-form" action="add_grade.php" method="post">
-        <label>Student Name:
-            <input type="text" name="student_name" required>
-        </label>
-        <label>Subject Name:
-            <input type="text" name="subject_name" required>
-        </label>
-        <label>Grade:
-            <input type="number" name="grade" required>
-        </label>
-        <label>Date:
-            <input type="date" name="date" required>
-        </label>
-        <label>Description:
-            <textarea name="description"></textarea>
-        </label>
-        <button type="submit">Add</button>
-    </form>
-    <section id="go-back">
-        <h3>Powrót</h3>
-        <a href="index.html">Wróć na stronę główną</a>
-    </section>
+        <form class="teacher-add-grade-form" action="add_grade.php" method="post">
+            <label>Student Name:
+                <input type="text" name="student_name" required>
+            </label>
+            <label>Subject Name:
+                <input type="text" name="subject_name" required>
+            </label>
+            <label>Grade:
+                <input type="number" name="grade" required>
+            </label>
+            <label>Date:
+                <input type="date" name="date" required>
+            </label>
+            <label>Description:
+                <textarea name="description"></textarea>
+            </label>
+            <button type="submit">Add</button>
+        </form>
+        <section id="go-back">
+            <h3>Powrót</h3>
+            <a href="index.html">Wróć na stronę główną</a>
+        </section>
     <?php endif; ?>
 </body>
 
