@@ -22,7 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $studentResult = $studentQuery->get_result();
     $student = $studentResult->fetch_assoc();
     if (!$student) {
-        echo "Student not found.";
+        // echo "Student not found.";
+        $headline = "Nie znaleziono takiego ucznia";
+        $backUrl = "dashboard.php"; 
+        include 'template.php';
         exit();
     }
     $student_id = $student['id'];
@@ -34,7 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subjectResult = $subjectQuery->get_result();
     $subject = $subjectResult->fetch_assoc();
     if (!$subject) {
-        echo "Subject not found.";
+        // echo "Subject not found.";
+        $headline = "Nie znaleziono takiego przedmiotu";
+        $backUrl = "dashboard.php"; 
+        include 'template.php';
         exit();
     }
     $subject_id = $subject['id'];
@@ -56,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $headline = "Nie dodano oceny";
         $backUrl = "dashboard.php"; 
         include 'template.php';
-        exit;
+        exit();
     }
 }
 ?>
