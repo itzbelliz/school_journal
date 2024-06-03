@@ -25,7 +25,7 @@ Below is the visualization of the database schema with descriptions of tables (o
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-repository/lesson-diary.git
+    git clone https://github.com/itzbelliz/school_journal.git
     cd lesson-diary
     ```
 
