@@ -44,11 +44,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $insertQuery->bind_param('iiissi', $student_id, $subject_id, $grade, $date, $description, $teacher_id);
 
     if ($insertQuery->execute()) {
-        echo "Grade added successfully.";
+        // echo "Grade added successfully.";
+        $title = "Dashboard Teacher";
+        $headline = "Dodano ocenę prawidłowo";
+        $backUrl = "dashboard.php"; 
+        include 'template.php';
+        exit;
     } else {
-        echo "Failed to add grade.";
+        // echo "Failed to add grade.";
+        $title = "Dashboard Teacher";
+        $headline = "Nie dodano oceny";
+        $backUrl = "dashboard.php"; 
+        include 'template.php';
+        exit;
     }
 }
 ?>
-
-

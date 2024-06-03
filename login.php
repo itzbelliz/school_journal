@@ -17,26 +17,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['role'] = $user['role'];
         header("Location: dashboard.php");
     } else {
-        echo "Incorrect username or password.";
+        // echo "Incorrect username or password.";
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
+
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style/style.css">
 </head>
+
 <body>
-    <form action="login.php" method="post">
-        <label for="login"></label>
-        <input type="text" id="login" name="login" required>
+    <div class="background">
+        <div class="big-text">HYS</div>
+        <div class="container">
+            <div class="logo">
+                <img src="img/HYS_1.png" alt="HYS Logo">
+            </div>
+            <h1>Nieprawidłowe hasło</h1>
+            <div class="go-back">
+            <a href="index.html">Powrót</a>
+        </div>
+        </div>
         
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        
-        <button type="submit">Zaloguj</button>
-    </form>
+        <footer>
+            <p>&copy Dziennik Lekcyjny HYS</p>
+        </footer>
+    </div>
+
 </body>
+
 </html>
