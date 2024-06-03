@@ -285,11 +285,12 @@ $schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
             </label>
             <button type="submit">Add</button>
         </form>
-        <section id="go-back">
-            <h3>Powrót</h3>
-            <a href="index.html">Wróć na stronę główną</a>
-        </section>
     <?php endif; ?>
+        <div class="footer">
+        <footer>
+          <p>&copy Dziennik Lekcyjny HYS</p>
+         </footer>
+        </div>
 </body>
 
 </html>
