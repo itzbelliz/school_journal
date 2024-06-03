@@ -1,4 +1,4 @@
-# Lesson Diary
+# School Journal
 
 ## Project Description
 The Lesson Diary application is designed to streamline the process of managing class schedules, recording attendance, and storing lesson materials for teachers and students. This application provides an easy-to-use interface for organizing and retrieving educational resources, enhancing the overall efficiency and productivity of the educational environment.
@@ -26,7 +26,7 @@ Below is the visualization of the database schema with descriptions of tables (o
 1. Clone the repository:
     ```bash
     git clone https://github.com/itzbelliz/school_journal.git
-    cd lesson-diary
+    cd school_journal
     ```
 
 2. Configure the database:
