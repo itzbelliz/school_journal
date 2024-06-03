@@ -11,7 +11,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query->bind_param('ssss', $username, $password, $role, $fullname);
     $query->execute();
 
-    echo "Rejestracja zakończona pomyślnie!";
+    // echo "Rejestracja zakończona pomyślnie!";
+    $title = "Logowanie";
+    $headline = "Rejestracja przebiegła prawidłowo";
+    $backUrl = "index.html";
+    include 'template.php';
+    exit;
 }
 ?>
 
