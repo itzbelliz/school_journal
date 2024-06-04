@@ -1,7 +1,7 @@
 # School Journal
 
 ## Project Description
-The Lesson Diary application is designed to streamline the process of managing class schedules, recording attendance, and storing lesson materials for teachers and students. This application provides an easy-to-use interface for organizing and retrieving educational resources, enhancing the overall efficiency and productivity of the educational environment.
+The School Journal application is designed to streamline the process of managing class schedules, recording attendance, and storing lesson materials for teachers and students. This application provides an easy-to-use interface for organizing and retrieving educational resources, enhancing the overall efficiency and productivity of the educational environment.
 
 ## Technologies
 - **Frontend**: HTML, CSS
@@ -38,8 +38,8 @@ Below is the visualization of the database schema with descriptions of tables (o
     DB_HOST=localhost
     DB_PORT=3306
     DB_DATABASE=school_journal
-    DB_USERNAME=your_username
-    DB_PASSWORD=your_password
+    DB_USERNAME=root
+    DB_PASSWORD=
     ```
 
 4. Start the PHP server:
