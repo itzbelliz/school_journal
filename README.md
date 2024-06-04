@@ -12,7 +12,7 @@ The School Journal application is designed to streamline the process of managing
 ## Database Schema
 Below is the visualization of the database schema with descriptions of tables (or collections).
 
-![Database Schema](https://drive.google.com/file/d/1PBSfBm2cLSB3KvuPn4Av22a12dzvS6k0/view?usp=sharing)
+![Database Schema](img/database_school_journal_structure.jpg)
 
 ## User Guide
 
