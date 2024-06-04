@@ -110,10 +110,10 @@ $schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
         </div>
     </header>
     <main class="main">
-        <section class="welcome">
+<section class="welcome">
             <i class="fas fa-user-graduate"></i>
             <div>Powitanie</div>
-            <p>Hello</p>
+            <p>Witaj użytkowniku: <?php echo $fullname ?></p>
         </section>
         <section class="average">
             <i class="fas fa-gauge-high"></i>
@@ -266,6 +266,30 @@ $schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
         </section>
     </main>
     <?php if ($role === 'teacher'): ?>
+        <main class="main">
+        <section class="add-grades">
+        <h3>Add Grade</h3>
+        <form class="teacher-add-grade-form" action="add_grade.php" method="post">
+            <label>Student Name:
+                <input type="text" name="student_name" required>
+            </label>
+            <label>Subject Name:
+                <input type="text" name="subject_name" required>
+            </label>
+            <label>Grade:
+                <input type="number" name="grade" required>
+            </label>
+            <label>Date:
+                <input type="date" name="date" required>
+            </label>
+            <label>Description:
+                <textarea name="description"></textarea>
+            </label>
+            <button type="submit">Add</button>
+        </form>
+        </section>
+        </main>
+    <?php endif; ?>
         <h3>Add Grade</h3>
         <form class="teacher-add-grade-form" action="add_grade.php" method="post">
             <label>Student Name:
