@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <select id="role" name="role" required>
                         <option value="student">Uczeń</option>
                         <option value="teacher">Nauczyciel</option>
+                        <option value="admin">Administrator</option>
                     </select>
                 </div>
                 <button type="submit">Zarejestruj się</button>

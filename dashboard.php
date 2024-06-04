@@ -98,6 +98,9 @@ $schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
                 <li><a href="#">Oceny</a></li>
                 <li><a href="#">Nieobecności</a></li>
                 <li><a href="#">Info/Uwagi/Wiadomości</a></li>
+                <?php if ($role === 'admin') : ?>
+                    <li><a href="add_schedule.php">Dodaj Plan Zajęć</a></li>
+                <?php endif; ?>
                 <li>
                     <form action="logout.php" method="post">
                         <button type="submit" name="logout">Wyloguj</button>
@@ -110,7 +113,7 @@ $schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
         </div>
     </header>
     <main class="main">
-<section class="welcome">
+        <section class="welcome">
             <i class="fas fa-user-graduate"></i>
             <div>Powitanie</div>
             <p>Witaj użytkowniku: <?php echo $fullname ?></p>
@@ -196,32 +199,21 @@ $schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
             <div>Kalendarz</div>
             <?php
             setlocale(LC_TIME, 'pl_PL.UTF-8');
-            // Funkcja generująca kalendarz
             function draw_calendar($month, $year) {
-                // Nagłówki dni tygodnia
                 $headings = array('Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Nd');
-
-                // Zebra everything together in table
                 $calendar = '<table class="calendar">';
                 $calendar .= '<tr class="calendar-row"><th class="calendar-day-head">' 
                             . implode('</th><th class="calendar-day-head">', $headings) 
                             . '</th></tr>';
-
-                // Znajdź pierwszy dzień miesiąca i liczbę dni w miesiącu
                 $running_day = date('N', mktime(0,0,0,$month,1,$year));
                 $days_in_month = date('t', mktime(0,0,0,$month,1,$year));
                 $day_counter = 0;
                 $days_in_this_week = 1;
-
-                // Pierwszy rząd z pustymi dniami jeśli miesiąc nie zaczyna się w poniedziałek
                 $calendar .= '<tr class="calendar-row">';
-
                 for ($x = 1; $x < $running_day; $x++) {
                     $calendar .= '<td class="calendar-day-np"></td>';
                     $days_in_this_week++;
                 }
-
-                // Dodaj dni miesiąca
                 for ($list_day = 1; $list_day <= $days_in_month; $list_day++) {
                     $calendar .= '<td class="calendar-day">' . $list_day . '</td>';
                     
@@ -233,38 +225,29 @@ $schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
                         $running_day = 0;
                         $days_in_this_week = 0;
                     }
-
                     $days_in_this_week++;
                     $running_day++;
                     $day_counter++;
                 }
-
-                // Dokończ rząd jeśli go przerwano
                 if ($days_in_this_week < 8) {
                     for ($x = 1; $x <= (8 - $days_in_this_week); $x++) {
                         $calendar .= '<td class="calendar-day-np"></td>';
                     }
                 }
-
                 $calendar .= '</tr>';
                 $calendar .= '</table>';
-
                 return $calendar;
             }
 
-            // Bieżący miesiąc i rok
             $month = date('m');
             $year = date('Y');
             $monthName = strftime('%B', mktime(0, 0, 0, $month, 10));
-
-            // Wyświetl nagłówek z nazwą miesiąca i rokiem
             echo '<h2>' . ucfirst($monthName) . ' ' . $year . '</h2>';
-            
-            // Wyświetl kalendarz
             echo draw_calendar($month, $year);
             ?>
         </section>
     </main>
+
     <?php if ($role === 'teacher'): ?>
         <main class="main">
         <section class="add-grades">
@@ -290,12 +273,11 @@ $schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
         </section>
         </main>
     <?php endif; ?>
-  
-        <div class="footer">
+
+    <div class="footer">
         <footer>
           <p>&copy Dziennik Lekcyjny HYS</p>
          </footer>
-        </div>
+    </div>
 </body>
-
 </html>
