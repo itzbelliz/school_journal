@@ -103,7 +103,7 @@ $schedule = $scheduleResult->fetch_all(MYSQLI_ASSOC);
                 <?php endif; ?>
                 <li>
                     <form action="logout.php" method="post">
-                        <button type="submit" name="logout">Wyloguj</button>
+                        <button type="submit" name="logout" class="wyloguj">Wyloguj</button>
                     </form>
                 </li>
             </ul>
